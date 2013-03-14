@@ -16,7 +16,7 @@ Installation
 Clone this repo in your Sublime Text 3 Package dir.
 
 ```
-$ git clone https://github.com/erichard/PHPCompanion "PHP Companion"
+$ git clone https://github.com/erichard/SublimePHPCompanion "PHP Companion"
 ```
 
 find_use
