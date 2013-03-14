@@ -3,15 +3,15 @@ Sublime PHP Companion
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
-SublimeCTagsPHP Next-Gen
-========================
+Successor of SublimeCTagsPHP
+----------------------------
 
 This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP).
 
 PHP Companion use the built-in index of Sublime Text 3 instead of CTags.
 
 Installation
-============
+----------------------------
 
 Clone this repo in your Sublime Text 3 Package dir.
 
@@ -19,14 +19,8 @@ Clone this repo in your Sublime Text 3 Package dir.
 $ git clone https://github.com/erichard/PHPCompanion "PHP Companion"
 ```
 
-Features
-========
-
-Two AWESOME features for the moment !
-
-
 find_use
-----------
+--------
 
 Just bring your cursor hover a class name, hit the F5 key (default but customizable) and that's it.
 
