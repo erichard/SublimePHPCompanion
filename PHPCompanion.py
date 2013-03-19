@@ -41,11 +41,11 @@ class ImportUseCommand(sublime_plugin.TextCommand):
             return sublime.status_message('Use already exist !')
 
         uses = []
-        regions = view.find_all(r"^\s*(use\s+[\w\\]+[;])", 0, '$1', uses)
+        regions = view.find_all(r"^(use\s+.+[;])", 0, '$1', uses)
         uses.append(use_stmt)
         uses = list(set(uses))
         uses.sort()
-        uses = "\n"+"\n".join(uses)
+        uses = "\n".join(uses)
 
 
         if len(regions) > 0:
@@ -59,13 +59,13 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         region = view.find(r"^\s*namespace\s+[\w\\]+[;{]", 0)
         if not region.empty():
             line = view.line(region)
-            view.insert(edit, line.end(), uses)
+            view.insert(edit, line.end(), "\n" + uses)
             return True
 
         region = view.find(r"<\?php", 0)
         if not region.empty():
             line = view.line(region)
-            view.insert(edit, line.end(), uses)
+            view.insert(edit, line.end(), "\n" + uses)
             return True
 
 class FindUseCommand(sublime_plugin.TextCommand):
