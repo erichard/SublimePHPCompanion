@@ -90,6 +90,37 @@ class FindUseCommand(sublime_plugin.TextCommand):
 
         self.view.run_command("import_use", {"namespace": self.namespaces[index][0]})
 
+
+class ReplaceFqdnCommand(sublime_plugin.TextCommand):
+    def run(self, edit, region_start, region_end, namespace):
+        region = sublime.Region(region_start,region_end)
+        self.view.replace(edit, region, namespace)
+        return True
+
+class ExpandFqdnCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        view = self.view
+        self.region = view.word(view.sel()[0])
+        symbol = view.substr(self.region)
+
+        if re.match(r"\w", symbol) is None:
+            return sublime.status_message('Not a valid symbol "%s" !' % symbol)
+
+        self.namespaces = find_symbol(symbol, view.window())
+
+        if len(self.namespaces) == 1:
+            self.view.run_command("replace_fqdn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[0][0]})
+
+        if len(self.namespaces) > 1:
+            view.window().show_quick_panel(self.namespaces, self.on_done)
+
+    def on_done(self, index):
+        if index == -1:
+            return
+
+        self.view.run_command("replace_fqdn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[index][0]})
+
+
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
 
