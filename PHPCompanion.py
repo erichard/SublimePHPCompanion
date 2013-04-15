@@ -7,6 +7,12 @@ import os
 
 setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
+def normalize_to_system_style_path(path):
+    if sublime.platform() == "windows":
+        path= re.sub(r"/([A-Za-z])/(.+)", r"\1:/\2", path)
+        path= re.sub(r"/", r"\\", path)
+    return path
+
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
@@ -22,7 +28,7 @@ def find_symbol(symbol, window):
 
     for file in files:
         if filter_file(file):
-            with open(file[0], "r+b") as f:
+            with open(normalize_to_system_style_path(file[0]), "rb") as f:
                 with contextlib.closing(mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)) as m:
                     for match in re.findall(pattern, m):
                         namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
