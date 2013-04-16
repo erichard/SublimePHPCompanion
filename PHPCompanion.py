@@ -148,10 +148,11 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
         if (setting("start_dir_pattern")):
             pattern = re.compile(setting("start_dir_pattern"))
         else:
-            pattern = r"[^A-Z]+(.*)"
+            pattern = r"^.*?((?:\/[A-Z][^\/]*)+)$"
 
         namespaceStmt = re.sub(pattern, '\\1', namespaceStmt)
         namespaceStmt = re.sub('/', '\\\\', namespaceStmt)
+        namespaceStmt = namespaceStmt.strip("\\")
 
         region = self.view.find(r"<\?php", 0)
         if not region.empty():

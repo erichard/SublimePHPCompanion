@@ -1,9 +1,6 @@
 {
     // Default pattern
-    "start_dir_pattern": "[^A-Z]+(.*)",
+    "start_dir_pattern": "^.*?((?:\/[A-Z][^\/]*)+)$",
 
-    "exclude_dir": ["app"]
-
-    // Symfony 2 pattern
-    // "start_dir_pattern": ".*(?:src|vendor)/(.*)"
+    "exclude_dir": []
 }
