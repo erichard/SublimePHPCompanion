@@ -1,4 +1,4 @@
-# Sublime PHP Companion
+# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=erichard&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software) 
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
@@ -55,3 +55,12 @@ Path are relative to the project directory.
 The pattern used to guess the namespace in the `import_namespace` command.
 The default pattern should work for most uses cases but you can change it if
 your projects are stored in different way.
+
+
+## Support me
+
+This plugin is free and will always be. 
+
+But if you like it and want to offer me a beer or something 
+you can use the flattr button next to the title ;-)
+
