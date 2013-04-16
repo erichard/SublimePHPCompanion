@@ -1,4 +1,4 @@
-# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=erichard&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software) 
+# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dhalsimfr&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software) 
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
