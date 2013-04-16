@@ -1,5 +1,5 @@
 [
-  { "keys": ["f6"], "command": "expand_fqdn" },
+  { "keys": ["f6"], "command": "expand_fqcn" },
   { "keys": ["f5"], "command": "find_use" },
   { "keys": ["f4"], "command": "import_namespace" }
 ]
