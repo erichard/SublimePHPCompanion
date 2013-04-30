@@ -98,13 +98,18 @@ class FindUseCommand(sublime_plugin.TextCommand):
 
 
 class ReplaceFqcnCommand(sublime_plugin.TextCommand):
-    def run(self, edit, region_start, region_end, namespace):
+    def run(self, edit, region_start, region_end, namespace, leading_separator):
         region = sublime.Region(region_start,region_end)
+
+        if (leading_separator):
+            namespace = '\\' + namespace
+
         self.view.replace(edit, region, namespace)
+
         return True
 
 class ExpandFqcnCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+    def run(self, edit, leading_separator = False):
         view = self.view
         self.region = view.word(view.sel()[0])
         symbol = view.substr(self.region)
@@ -115,7 +120,7 @@ class ExpandFqcnCommand(sublime_plugin.TextCommand):
         self.namespaces = find_symbol(symbol, view.window())
 
         if len(self.namespaces) == 1:
-            self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[0][0]})
+            self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[0][0], "leading_separator": leading_separator})
 
         if len(self.namespaces) > 1:
             view.window().show_quick_panel(self.namespaces, self.on_done)
@@ -124,7 +129,7 @@ class ExpandFqcnCommand(sublime_plugin.TextCommand):
         if index == -1:
             return
 
-        self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[index][0]})
+        self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[index][0], "leading_separator": leading_separator})
 
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
