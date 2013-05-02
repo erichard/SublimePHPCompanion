@@ -29,7 +29,8 @@ PHP Companion will sort your uses statement in alphabetical order.
 ### expand_fqcn
 
 This command expand the class under the cursor to its FQCN (Fully Qualified Class Name).
-Default mapping is set on the `F6` key.
+You have two keys for this command `F6` and `shift+F6` that respectively expand 
+without and with the leading namespace separator `\`.
 
 ### import_namespace
 
@@ -48,7 +49,10 @@ the status bar.
 ### exclude_dir
 
 List of directories to exclude when searching for the class declaration file.
-Path are relative to the project directory.
+Path are relative to the project directory. 
+
+Please note that the filtering is done after the search in the index. So this option has no impact on performance, 
+it's just a convenient way to avoid duplicate namespace declaration in some case.
 
 ### start_dir_pattern
 
