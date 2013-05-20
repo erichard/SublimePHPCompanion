@@ -54,26 +54,25 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         uses.sort()
         uses = "\n".join(uses)
 
-
         if len(regions) > 0:
             region = regions[0]
             for r in regions:
                 region = region.cover(r)
 
             view.replace(edit, region, uses)
-            return True
+            return sublime.status_message('Successfully imported' + namespace)
 
         region = view.find(r"^\s*namespace\s+[\w\\]+[;{]", 0)
         if not region.empty():
             line = view.line(region)
             view.insert(edit, line.end(), "\n" + uses)
-            return True
+            return sublime.status_message('Successfully imported' + namespace)
 
         region = view.find(r"<\?php", 0)
         if not region.empty():
             line = view.line(region)
             view.insert(edit, line.end(), "\n" + uses)
-            return True
+            return sublime.status_message('Successfully imported' + namespace)
 
 class FindUseCommand(sublime_plugin.TextCommand):
     def run(self, edit):
