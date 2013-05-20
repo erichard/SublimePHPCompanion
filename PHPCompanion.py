@@ -20,8 +20,9 @@ def find_symbol(symbol, window):
 
     def filter_file(file):
         if setting('exclude_dir'):
-            for dir in setting('exclude_dir'):
-                if dir in file[1]:
+            for pattern in setting('exclude_dir'):
+                pattern = re.compile(pattern)
+                if pattern.match(file[1]):
                     return False
 
         return file
