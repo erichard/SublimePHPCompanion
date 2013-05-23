@@ -16,7 +16,7 @@ def normalize_to_system_style_path(path):
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
-    pattern = re.compile(b'namespace\s+([^;]+);')
+    pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
 
     def filter_file(file):
         if setting('exclude_dir'):
