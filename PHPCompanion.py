@@ -7,11 +7,13 @@ import os
 
 setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
+
 def normalize_to_system_style_path(path):
     if sublime.platform() == "windows":
-        path= re.sub(r"/([A-Za-z])/(.+)", r"\1:/\2", path)
-        path= re.sub(r"/", r"\\", path)
+        path = re.sub(r"/([A-Za-z])/(.+)", r"\1:/\2", path)
+        path = re.sub(r"/", r"\\", path)
     return path
+
 
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
@@ -43,7 +45,7 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         view = self.view
         use_stmt = "use " + namespace + ";"
 
-        region = view.find(use_stmt.replace('\\','\\\\'), 0)
+        region = view.find(use_stmt.replace('\\', '\\\\'), 0)
         if not region.empty():
             return sublime.status_message('Use already exist !')
 
@@ -74,6 +76,7 @@ class ImportUseCommand(sublime_plugin.TextCommand):
             view.insert(edit, line.end(), "\n" + uses)
             return sublime.status_message('Successfully imported' + namespace)
 
+
 class FindUseCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
@@ -99,7 +102,7 @@ class FindUseCommand(sublime_plugin.TextCommand):
 
 class ReplaceFqcnCommand(sublime_plugin.TextCommand):
     def run(self, edit, region_start, region_end, namespace, leading_separator):
-        region = sublime.Region(region_start,region_end)
+        region = sublime.Region(region_start, region_end)
 
         if (leading_separator):
             namespace = '\\' + namespace
@@ -108,8 +111,9 @@ class ReplaceFqcnCommand(sublime_plugin.TextCommand):
 
         return True
 
+
 class ExpandFqcnCommand(sublime_plugin.TextCommand):
-    def run(self, edit, leading_separator = False):
+    def run(self, edit, leading_separator=False):
         view = self.view
         self.region = view.word(view.sel()[0])
         symbol = view.substr(self.region)
@@ -118,7 +122,7 @@ class ExpandFqcnCommand(sublime_plugin.TextCommand):
             return sublime.status_message('Not a valid symbol "%s" !' % symbol)
 
         self.namespaces = find_symbol(symbol, view.window())
-        self.leading_separator = leading_separator;
+        self.leading_separator = leading_separator
 
         if len(self.namespaces) == 1:
             self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[0][0], "leading_separator": self.leading_separator})
