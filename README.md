@@ -10,6 +10,11 @@ PHP Companion use the built-in index of Sublime Text 3 instead of CTags.
 
 ## Installation
 
+### Package control
+
+Just search for PHP Companion in package control and you're ready.
+
+### Git clone
 Clone this repo in your Sublime Text 3 Package dir.
 
 ```
