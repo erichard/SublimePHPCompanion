@@ -170,3 +170,20 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
             line_contents = '\n\n' + "namespace " + namespaceStmt + ";"
             self.view.insert(edit, line.end(), line_contents)
             return True
+
+class GotoDefinitionScopeCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        currentregion = self.view.word(self.view.sel()[0])
+        currentstr = self.view.substr(currentregion)
+        previousstr = self.view.substr(sublime.Region(
+            currentregion.begin() - 7, currentregion.begin()))
+
+        if "$this->" == previousstr:
+            for symbol in self.view.symbols():
+                if symbol[1] == currentstr:
+                    self.view.sel().clear()
+                    self.view.sel().add(symbol[0])
+                    return
+
+        # falls back to the original functionality
+        self.view.window().run_command("goto_definition")

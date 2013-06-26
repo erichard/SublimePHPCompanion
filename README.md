@@ -49,6 +49,11 @@ the status bar.
 
 **Warning:** This feature require a filename so the command won't work in an unsaved buffer.
 
+### goto_definition_scope
+
+Hit `shift+F12` to search for a method definition based on the current scope. It will fallback to
+the "goto_definition" command if a match was not found.
+
 ## Settings
 
 ### exclude_dir
