@@ -1,12 +1,12 @@
 # Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dhalsimfr&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software) 
 
-This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
+This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session. 
 
 ## Successor of SublimeCTagsPHP
 
-This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP).
+This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP). PHP Companion use the built-in index of Sublime Text 3 instead of CTags.
 
-PHP Companion use the built-in index of Sublime Text 3 instead of CTags.
+**Warning!** PHP Companion does not work on Sublime Text 2 and never will.
 
 ## Installation
 
