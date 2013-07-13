@@ -1,7 +1,9 @@
 import sublime_plugin
+import ..settings_filename
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
+        settings = sublime.load_settings(settings_filename).get
 
         region = self.view.find(r"^\s*namespace\s[\w\\]+;", 0)
 
@@ -18,8 +20,8 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
         # namespace begin at first camelcase dir
         namespaceStmt = os.path.dirname(filename)
 
-        if (setting("start_dir_pattern")):
-            pattern = re.compile(setting("start_dir_pattern"))
+        if (settings("start_dir_pattern")):
+            pattern = re.compile(settings("start_dir_pattern"))
         else:
             pattern = r"^.*?((?:\/[A-Z][^\/]*)+)$"
 

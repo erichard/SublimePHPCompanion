@@ -8,13 +8,13 @@ import sys
 
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
+import settings_filename
 from php_companion import import_use_command
 from php_companion import find_use_command
 from php_companion import replace_fqcn_command
 from php_companion import expand_fqcn_command
 from php_companion import import_namespace_command
 
-setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
 def normalize_to_system_style_path(path):
     if sublime.platform() == "windows":
@@ -29,8 +29,9 @@ def find_symbol(symbol, window):
     pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
 
     def filter_file(file):
-        if setting('exclude_dir'):
-            for pattern in setting('exclude_dir'):
+        settings = sublime.load_settings(settings_filename).get
+        if settings('exclude_dir'):
+            for pattern in settings('exclude_dir'):
                 pattern = re.compile(pattern)
                 if pattern.match(file[1]):
                     return False
