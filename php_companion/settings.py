@@ -1,2 +1,2 @@
-def settings_filename():
+def filename():
     return 'PHP Companion.sublime-settings'
