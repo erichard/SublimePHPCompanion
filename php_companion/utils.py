@@ -3,18 +3,8 @@ import sublime
 import re
 import mmap
 import contextlib
-import os
-import sys
 
-sys.path.append(os.path.abspath(os.path.dirname(__file__)))
-
-import settings_filename
-from php_companion import import_use_command
-from php_companion import find_use_command
-from php_companion import replace_fqcn_command
-from php_companion import expand_fqcn_command
-from php_companion import import_namespace_command
-
+from .settings import filename as settings_filename
 
 def normalize_to_system_style_path(path):
     if sublime.platform() == "windows":
@@ -22,14 +12,13 @@ def normalize_to_system_style_path(path):
         path = re.sub(r"/", r"\\", path)
     return path
 
-
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
     pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
+    settings = sublime.load_settings(settings_filename()).get
 
     def filter_file(file):
-        settings = sublime.load_settings(settings_filename).get
         if settings('exclude_dir'):
             for pattern in settings('exclude_dir'):
                 pattern = re.compile(pattern)
