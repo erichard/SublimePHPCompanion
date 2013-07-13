@@ -5,8 +5,10 @@ import re
 import mmap
 import contextlib
 import os
+import sys
 
 from php_companion import import_use_command, find_use_command
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
 setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
