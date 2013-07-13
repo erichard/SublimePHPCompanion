@@ -12,6 +12,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from php_companion import import_use_command
 from php_companion import find_use_command
 from php_companion import replace_fqcn_command
+from php_companion import expand_fqcn_command
 
 setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
@@ -45,31 +46,6 @@ def find_symbol(symbol, window):
                         break
 
     return namespaces
-
-class ExpandFqcnCommand(sublime_plugin.TextCommand):
-    def run(self, edit, leading_separator=False):
-        view = self.view
-        self.region = view.word(view.sel()[0])
-        symbol = view.substr(self.region)
-
-        if re.match(r"\w", symbol) is None:
-            return sublime.status_message('Not a valid symbol "%s" !' % symbol)
-
-        self.namespaces = find_symbol(symbol, view.window())
-        self.leading_separator = leading_separator
-
-        if len(self.namespaces) == 1:
-            self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[0][0], "leading_separator": self.leading_separator})
-
-        if len(self.namespaces) > 1:
-            view.window().show_quick_panel(self.namespaces, self.on_done)
-
-    def on_done(self, index):
-        if index == -1:
-            return
-
-        self.view.run_command("replace_fqcn", {"region_start": self.region.begin(), "region_end": self.region.end(), "namespace": self.namespaces[index][0], "leading_separator": self.leading_separator})
-
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
