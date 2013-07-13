@@ -7,8 +7,10 @@ import contextlib
 import os
 import sys
 
-from php_companion import import_use_command, find_use_command
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
+
+from php_companion import import_use_command
+from php_companion import find_use_command
 
 setting = sublime.load_settings('PHP Companion.sublime-settings').get
 
