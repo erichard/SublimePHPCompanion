@@ -1,9 +1,14 @@
+import sublime
 import sublime_plugin
-import ..settings_filename
+
+import os
+import re
+
+from ..settings import filename as settings_filename
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        settings = sublime.load_settings(settings_filename).get
+        settings = sublime.load_settings(settings_filename()).get
 
         region = self.view.find(r"^\s*namespace\s[\w\\]+;", 0)
 

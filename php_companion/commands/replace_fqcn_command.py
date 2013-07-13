@@ -1,3 +1,4 @@
+import sublime
 import sublime_plugin
 
 class ReplaceFqcnCommand(sublime_plugin.TextCommand):

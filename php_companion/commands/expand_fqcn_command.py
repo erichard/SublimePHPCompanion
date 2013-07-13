@@ -1,4 +1,9 @@
+import sublime
 import sublime_plugin
+
+import re
+
+from ..utils import find_symbol
 
 class ExpandFqcnCommand(sublime_plugin.TextCommand):
     def run(self, edit, leading_separator=False):

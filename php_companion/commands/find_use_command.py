@@ -1,4 +1,9 @@
+import sublime
 import sublime_plugin
+
+import re
+
+from ..utils import find_symbol
 
 class FindUseCommand(sublime_plugin.TextCommand):
 

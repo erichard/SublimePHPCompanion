@@ -1,3 +1,4 @@
+import sublime
 import sublime_plugin
 
 class ImportUseCommand(sublime_plugin.TextCommand):
