@@ -31,8 +31,16 @@ def find_symbol(symbol, window):
         if filter_file(file):
             with open(normalize_to_system_style_path(file[0]), "rb") as f:
                 with contextlib.closing(mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)) as m:
-                    for match in re.findall(pattern, m):
-                        namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
-                        break
+                    matches = re.findall(pattern, m)
+                    if matches:
+                        for match in matches:
+                            namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
+                            break
+                    else:
+                        namespaces.append([symbol, file[1]])
+
+    for className in settings('predefined_class_names'):
+        if className == symbol:
+            namespaces.append([symbol, 'PHP predefined class'])
 
     return namespaces
