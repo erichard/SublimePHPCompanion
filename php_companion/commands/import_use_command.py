@@ -21,7 +21,7 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         region = self.view.find(where, 0)
         if not region.empty():
             line = self.view.line(region)
-            self.view.insert(edit, line.end(), "\n" + self.build_uses())
+            self.view.insert(edit, line.end(), "\n\n" + self.build_uses())
             sublime.status_message('Successfully imported' + self.namespace)
 
     def insert_use_among_others(self, edit):
