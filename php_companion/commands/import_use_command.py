@@ -13,7 +13,10 @@ class ImportUseCommand(sublime_plugin.TextCommand):
     def insert_use(self, edit):
         if self.is_first_use():
             for location in [r"^\s*namespace\s+[\w\\]+[;{]", r"<\?php"]:
-                self.insert_first_use(location, edit)
+                inserted = self.insert_first_use(location, edit)
+
+                if inserted:
+                    break
         else:
             self.insert_use_among_others(edit)
 
@@ -23,6 +26,10 @@ class ImportUseCommand(sublime_plugin.TextCommand):
             line = self.view.line(region)
             self.view.insert(edit, line.end(), "\n\n" + self.build_uses())
             sublime.status_message('Successfully imported' + self.namespace)
+
+            return true
+
+        return false
 
     def insert_use_among_others(self, edit):
         regions = self.view.find_all(r"^(use\s+.+[;])", 0)
