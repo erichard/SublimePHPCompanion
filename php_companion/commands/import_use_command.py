@@ -27,9 +27,9 @@ class ImportUseCommand(sublime_plugin.TextCommand):
             self.view.insert(edit, line.end(), "\n\n" + self.build_uses())
             sublime.status_message('Successfully imported' + self.namespace)
 
-            return true
+            return True
 
-        return false
+        return False
 
     def insert_use_among_others(self, edit):
         regions = self.view.find_all(r"^(use\s+.+[;])", 0)
