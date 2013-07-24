@@ -3,6 +3,8 @@ import sublime
 import re
 import mmap
 import contextlib
+import subprocess
+import json
 
 from .settings import filename as settings_filename
 
@@ -35,4 +37,19 @@ def find_symbol(symbol, window):
                         namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
                         break
 
+    namespaces += find_in_global_namespace(symbol)
+
     return namespaces
+
+def find_in_global_namespace(symbol):
+    definedClasses = subprocess.check_output(["php", "-r", "echo json_encode(get_declared_classes());"]);
+    definedClasses = definedClasses.decode('utf-8')
+    definedClasses = json.loads(definedClasses)
+    definedClasses.sort()
+
+    matches = []
+    for phpClass in definedClasses:
+        if symbol == phpClass:
+            matches.append(['\\' + phpClass, '\\' + phpClass])
+
+    return matches
