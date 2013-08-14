@@ -2,5 +2,8 @@
     // Default pattern
     "start_dir_pattern": "^.*?((?:\/[A-Z][^\/]*)+)$",
 
-    "exclude_dir": []
+    "exclude_dir": [],
+
+    // Need the php binary to work
+    "allow_use_from_global_namespace" : false
 }

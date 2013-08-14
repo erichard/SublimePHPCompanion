@@ -37,7 +37,8 @@ def find_symbol(symbol, window):
                         namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
                         break
 
-    namespaces += find_in_global_namespace(symbol)
+    if settings('allow_use_from_global_namespace'):
+        namespaces += find_in_global_namespace(symbol)
 
     return namespaces
 
