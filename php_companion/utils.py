@@ -51,6 +51,6 @@ def find_in_global_namespace(symbol):
     matches = []
     for phpClass in definedClasses:
         if symbol == phpClass:
-            matches.append(['\\' + phpClass, '\\' + phpClass])
+            matches.append([phpClass, phpClass])
 
     return matches
