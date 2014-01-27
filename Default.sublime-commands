@@ -1,0 +1,6 @@
+[
+  { "caption": "PHPCompanion:Expand Fully Qualified Class Name", "command": "expand_fqcn" },
+  { "caption": "PHPCompanion:Find Use", "command": "find_use" },
+  { "caption": "PHPCompanion:Import Namespace", "command": "import_namespace" },
+  { "caption": "PHPCompanion:Goto Definition Scope", "command": "goto_definition_scope" }
+]
