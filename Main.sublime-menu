@@ -33,7 +33,24 @@
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/PHP Companion/Default.sublime-keymap"
+                                    "file": "${packages}/PHP Companion/Default (OSX).sublime-keymap",
+                                    "platform": "OSX"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/PHP Companion/Default (Linux).sublime-keymap",
+                                    "platform": "Linux"
+                                },
+                                "caption": "Key Bindings – Default"
+                            },
+                            {
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/PHP Companion/Default (Windows).sublime-keymap",
+                                    "platform": "Windows"
                                 },
                                 "caption": "Key Bindings – Default"
                             },
