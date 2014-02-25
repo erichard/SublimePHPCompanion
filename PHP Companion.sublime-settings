@@ -1,6 +1,6 @@
 {
     // Default pattern
-    "start_dir_pattern": "^.*?((?:\/[A-Z][^\/]*)+)$",
+    "start_dir_pattern": "^.*?((?:[\/\\\\][A-Z][^\/\\\\]*)+)$",
 
     "exclude_dir": [],
 
