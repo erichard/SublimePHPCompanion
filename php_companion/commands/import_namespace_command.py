@@ -10,7 +10,7 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         settings = sublime.load_settings(settings_filename()).get
 
-        region = self.view.find(r"^\s*namespace\s[\w\\]+;", 0)
+        region = self.view.find(r"^(<\?php){0,1}\s*namespace\s[\w\\]+;", 0)
 
         if not region.empty():
             return sublime.status_message('namespace definition already exist !')
@@ -37,6 +37,12 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
         region = self.view.find(r"<\?php", 0)
         if not region.empty():
             line = self.view.line(region)
-            line_contents = '\n\n' + "namespace " + namespaceStmt + ";"
+            namespacePosition = settings("namespace_position");
+
+            if namespacePosition == 'newline':
+                line_contents = '\n\n' + "namespace " + namespaceStmt + ";"
+            elif namespacePosition == 'inline':
+                line_contents = ' ' + "namespace " + namespaceStmt + ";"
+
             self.view.insert(edit, line.end(), line_contents)
             return True
