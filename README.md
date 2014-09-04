@@ -1,6 +1,6 @@
-# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dhalsimfr&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software) 
+# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dhalsimfr&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software)
 
-This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session. 
+This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
 ## Successor of SublimeCTagsPHP
 
@@ -34,7 +34,7 @@ PHP Companion will sort your uses statement in alphabetical order.
 ### expand_fqcn
 
 This command expand the class under the cursor to its FQCN (Fully Qualified Class Name).
-You have two keys for this command `F6` and `shift+F6` that respectively expand 
+You have two keys for this command `F6` and `shift+F6` that respectively expand
 without and with the leading namespace separator `\`.
 
 ### import_namespace
@@ -56,12 +56,27 @@ the "goto_definition" command if a match was not found.
 
 ## Settings
 
+Settings can be stored either in your system wide "PHP Companion.sublime-settings" file or in the project
+settings file. This allows you to set preferences per-project if you need to.
+
+If you're storing settings in a project file, put them in a phpcompanion node like this:
+
+```
+"phpcompanion": {
+    "namespace_prefix": "VendorName\Project\Foo\Bar",
+    "exclude_dir": [
+        "vendor",
+        "build"
+    ]
+}
+```
+
 ### exclude_dir
 
 List of directories to exclude when searching for the class declaration file.
-Path are relative to the project directory. 
+Path are relative to the project directory.
 
-Please note that the filtering is done after the search in the index. So this option has no impact on performance, 
+Please note that the filtering is done after the search in the index. So this option has no impact on performance,
 it's just a convenient way to avoid duplicate namespace declaration in some case.
 
 ### start_dir_pattern
@@ -69,6 +84,20 @@ it's just a convenient way to avoid duplicate namespace declaration in some case
 The pattern used to guess the namespace in the `import_namespace` command.
 The default pattern should work for most uses cases but you can change it if
 your projects are stored in different way.
+
+### namespace_prefix
+
+If you have a namespace which is not fully exposed by the file path, you can set a namespace prefix. For example, suppose you have a class in
+
+```
+src/Foo/Bar.php
+```
+
+adding a namespace_prefix of 'Vendor\Project' would result in a resolved namespace declaration of
+
+```
+namespace Vendor\Project\Foo;
+```
 
 ## Licence
 
@@ -93,7 +122,7 @@ All of Sublime PHP Companion is licensed under the MIT license.
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
-  
+
 
 ## Support me
 
