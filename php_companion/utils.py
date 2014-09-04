@@ -6,7 +6,7 @@ import contextlib
 import subprocess
 import json
 
-from .settings import filename as settings_filename
+from .settings import get_setting
 
 def normalize_to_system_style_path(path):
     if sublime.platform() == "windows":
@@ -18,11 +18,10 @@ def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
     pattern = re.compile(b'^\s*namespace\s+([^;]+);', re.MULTILINE)
-    settings = sublime.load_settings(settings_filename()).get
 
     def filter_file(file):
-        if settings('exclude_dir'):
-            for pattern in settings('exclude_dir'):
+        if get_setting('exclude_dir', False):
+            for pattern in get_setting('exclude_dir', False):
                 pattern = re.compile(pattern)
                 if pattern.match(file[1]):
                     return False
@@ -37,7 +36,7 @@ def find_symbol(symbol, window):
                         namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
                         break
 
-    if settings('allow_use_from_global_namespace'):
+    if get_setting('allow_use_from_global_namespace', False):
         namespaces += find_in_global_namespace(symbol)
 
     return namespaces

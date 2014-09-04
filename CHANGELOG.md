@@ -1,3 +1,8 @@
+## 2014-09-04
+
+ - Allow per-project settings
+ - Add support for a configured namespace prefix to support PSR4 style libraries
+
 ## 2014-04-11
 
  - Better namespace declaration matching
