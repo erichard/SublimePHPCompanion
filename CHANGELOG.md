@@ -1,3 +1,7 @@
+## 2014-09-10
+
+ - Add a space in status bar message when importing namespaces
+
 ## 2014-09-04
 
  - Allow per-project settings
