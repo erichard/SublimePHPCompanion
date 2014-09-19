@@ -17,7 +17,7 @@ def normalize_to_system_style_path(path):
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
     namespaces = []
-    pattern = re.compile(b'^<\?php\s*namespace\s+([^;]+);', re.MULTILINE)
+    pattern = re.compile(b'namespace\s+([^;]+);', re.MULTILINE)
 
     def filter_file(file):
         if get_setting('exclude_dir', False):
