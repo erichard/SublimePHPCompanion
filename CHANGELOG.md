@@ -1,3 +1,7 @@
+## 2014-10-10
+
+ - Overwrite namespace declaration when already exist
+
 ## 2014-09-10
 
  - Add a space in status bar message when importing namespaces
