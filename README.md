@@ -25,7 +25,7 @@ $ git clone https://github.com/erichard/SublimePHPCompanion "PHP Companion"
 
 ### find_use
 
-Just bring your cursor hover a class name, hit the `F5` key (default but customizable) and that's it.
+Just bring your cursor hover a class name, hit the `F10` key (default but customizable) and that's it.
 
 It will show you the different namespace that match your class, pick up one and your done.
 
@@ -34,12 +34,12 @@ PHP Companion will sort your uses statement in alphabetical order.
 ### expand_fqcn
 
 This command expand the class under the cursor to its FQCN (Fully Qualified Class Name).
-You have two keys for this command `F6` and `shift+F6` that respectively expand
+You have two keys for this command `F9` and `shift+F9` that respectively expand
 without and with the leading namespace separator `\`.
 
 ### import_namespace
 
-Just hit the `F4` key, it will add the namespace definition based on the absolute
+Just hit the `F8` key, it will add the namespace definition based on the absolute
 filename of the current file. I use a simple trick to determine where the
 namespace begun, actually the namespace will start at the first CamelCased
 folder.
