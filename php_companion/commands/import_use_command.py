@@ -1,6 +1,8 @@
 import sublime
 import sublime_plugin
 
+from ..settings import get_setting
+
 class ImportUseCommand(sublime_plugin.TextCommand):
     def run(self, edit, namespace):
         self.namespace = namespace
@@ -49,6 +51,8 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         uses.append(use_stmt)
         uses = list(set(uses))
         uses.sort()
+        if get_setting("use_sort_length"):
+            uses.sort(key = len)
 
         return "\n".join(uses)
 
