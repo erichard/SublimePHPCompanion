@@ -29,7 +29,8 @@ Just bring your cursor hover a class name, hit the `F10` key (default but custom
 
 It will show you the different namespace that match your class, pick up one and your done.
 
-PHP Companion will sort your uses statement in alphabetical order.
+PHP Companion will sort your uses statement in alphabetical order. This can be
+configured to sort by line length with the `use_sort_length` user setting.
 
 ### expand_fqcn
 
@@ -98,6 +99,10 @@ adding a namespace_prefix of 'Vendor\Project' would result in a resolved namespa
 ```
 namespace Vendor\Project\Foo;
 ```
+
+### use_sort_length
+
+When importing use statements with the `find_use` command, sort statements by the length of the line.
 
 ## Licence
 
