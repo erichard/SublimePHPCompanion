@@ -22,7 +22,7 @@ The package no longer provides keybindings. You will have to install your own sh
 
 ### find_use
 
-Just bring your cursor hover a class name, hit the `F5` key (`F10` on OSX) and that's it.
+Just bring your cursor hover a class name, hit the `F5` key (personal shortcut) and that's it.
 
 It will show you the different namespace that match your class, pick up one and your done.
 
@@ -32,12 +32,12 @@ configured to sort by line length with the `use_sort_length` user setting.
 ### expand_fqcn
 
 This command expand the class under the cursor to its FQCN (Fully Qualified Class Name).
-You have two keys for this command `F6` and `shift+F6` (`F9` for OSX) that respectively expand
+You have two keys for this command `F6` and `shift+F6` (personal shortcut) that respectively expand
 without and with the leading namespace separator `\`.
 
 ### import_namespace
 
-Just hit the `F4` key (`F8` on OSX), it will add the namespace definition based on the absolute
+Just hit the `F4` key (personal shortcut), it will add the namespace definition based on the absolute
 filename of the current file. I use a simple trick to determine where the
 namespace begun, actually the namespace will start at the first CamelCased
 folder.
@@ -49,7 +49,7 @@ the status bar.
 
 ### goto_definition_scope
 
-Hit `shift+F12` to search for a method definition based on the current scope. It will fallback to
+Hit `shift+F12` (personal shortcut) to search for a method definition based on the current scope. It will fallback to
 the "goto_definition" command if a match was not found.
 
 ## Settings
