@@ -1,0 +1,35 @@
+v1 2015-06-29
+-------------
+
+1.  No more default keybindings.
+
+    It is quite difficult to pick unused default shortcuts that fits for
+    all platforms, so I was advized to simply remove the defaults keybindings
+    and let users choose theirs.
+
+    If you haven't already overwritten the PHP Companion shortcuts,
+    you must go to "Preferences > Key Bindings - User" and copy theses lines.
+
+    Linux/Windows users
+    [
+        ...
+        { "keys": ["f6"], "command": "expand_fqcn" },
+        { "keys": ["shift+f6"], "command": "expand_fqcn", "args": {"leading_separator": true} },
+        { "keys": ["f5"], "command": "find_use" },
+        { "keys": ["f4"], "command": "import_namespace" },
+        { "keys": ["shift+f12"], "command": "goto_definition_scope" }
+        ...
+    ]
+
+    OSX users
+    [
+        ...
+        { "keys": ["f9"], "command": "expand_fqcn" },
+        { "keys": ["shift+f9"], "command": "expand_fqcn", "args": {"leading_separator": true} },
+        { "keys": ["f10"], "command": "find_use" },
+        { "keys": ["f8"], "command": "import_namespace" },
+        { "keys": ["shift+f12"], "command": "goto_definition_scope" }
+        ...
+    ]
+
+2. readme updated.

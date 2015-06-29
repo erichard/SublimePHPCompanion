@@ -1,3 +1,8 @@
+## 2015-06-29
+
+ - Remove defaults keybindings.
+ - Update readme
+
 ## 2014-10-10
 
  - Overwrite namespace declaration when already exist
