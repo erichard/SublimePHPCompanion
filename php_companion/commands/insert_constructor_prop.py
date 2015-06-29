@@ -1,4 +1,7 @@
-import sublime, sublime_plugin
+import sublime
+import sublime_plugin
+
+from ..settings import get_setting
 
 
 def find_class_opening_bracket(view):
@@ -30,6 +33,7 @@ class InsertConstructorPropertyCommand(sublime_plugin.TextCommand):
         'Run the command.'
         self.edit = edit
         self.regions = []
+        self.visibility = get_setting('visibility', 'private')
 
         self.add_property(self.placeholder)
         self.add_constructor(self.placeholder)
@@ -51,7 +55,7 @@ class InsertConstructorPropertyCommand(sublime_plugin.TextCommand):
             pos = find_class_opening_bracket(self.view)
             text += "\n"
 
-        pos += self.view_insert(pos, "\n\tprivate $")
+        pos += self.view_insert(pos, "\n\t"+self.visibility+" $")
         self.view_insert(pos, text)
 
         cursor_start = pos
