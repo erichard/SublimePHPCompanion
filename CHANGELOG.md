@@ -1,6 +1,10 @@
+## 2015-06-30
+
+ - Add a insert_constructor_prop command to insert both contructor argument and property in one shot.
+
 ## 2015-06-29
 
- - Remove defaults keybindings.
+ - Remove defaults keybindings
  - Update readme
 
 ## 2014-10-10
