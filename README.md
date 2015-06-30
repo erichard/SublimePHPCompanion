@@ -1,4 +1,4 @@
-# Sublime PHP Companion [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=dhalsimfr&url=https://github.com/erichard/SublimePHPCompanion&title=SublimePHPCompanion&language=&tags=github&category=software)
+# Sublime PHP Companion
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
@@ -128,8 +128,3 @@ All of Sublime PHP Companion is licensed under the MIT license.
   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   THE SOFTWARE.
-
-
-## Support me
-
-If you like this plugin and want to offer me a beer or something you can use the flattr button next to the title ;-)
