@@ -3,5 +3,5 @@
   { "caption": "PHPCompanion:Find Use", "command": "find_use" },
   { "caption": "PHPCompanion:Import Namespace", "command": "import_namespace" },
   { "caption": "PHPCompanion:Goto Definition Scope", "command": "goto_definition_scope" },
-  { "caption": "PHPCompanion:Insert Constructor Property", "command": "insert_constructor_prop" }
+  { "caption": "PHPCompanion:Insert Constructor Property", "command": "insert_constructor_property" }
 ]
