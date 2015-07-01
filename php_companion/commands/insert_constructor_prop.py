@@ -11,7 +11,7 @@ class InsertConstructorPropertyCommand(sublime_plugin.TextCommand):
 
     def name(self):
         'The name of the command, as used in key bindings.'
-        return 'insert_php_constructor_arg'
+        return 'insert_php_constructor_property'
 
     def description(self):
         'The description of the command.'
