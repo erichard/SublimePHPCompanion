@@ -4,13 +4,10 @@ def filename():
     return 'PHP Companion.sublime-settings'
 
 def get_setting(name, default=None):
-    project_data = sublime.active_window().project_data();
+    project_data = sublime.active_window().project_data()
 
-    if (project_data != None):
-        v = project_data.get("phpcompanion", {}).get(name, None)
-        if v != None:
-            return v
-        else:
-            return sublime.load_settings(filename()).get(name, default)
-    else:
-        return None
+    if (project_data and 'phpcompanion' in project_data and
+            name in project_data['phpcompanion']):
+        return project_data['phpcompanion'][name]
+
+    return sublime.load_settings(filename()).get(name, default)
