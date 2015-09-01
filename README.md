@@ -52,7 +52,7 @@ the status bar.
 Hit `shift+F12` (personal shortcut) to search for a method definition based on the current scope. It will fallback to
 the "goto_definition" command if a match was not found.
 
-### insert_constructor_prop
+### insert_php_constructor_property
 
 Hit `F7` (personal shortcut) to insert both a constructor argument and its according property. The property will be `private` by default but you can change it with the `visibility` setting.
 
