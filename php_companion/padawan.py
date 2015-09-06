@@ -109,7 +109,7 @@ class PadawanClient:
     def SaveIndex(self, filepath):
         return self.DoRequest('save', {'filepath': filepath})
 
-    def DoRequest(self, command, params, data=''):
+    def DoRequest(self, command, params={}, data=''):
         try:
             return server.sendRequest(command, params, data)
         except urllib.request.URLError:
@@ -193,6 +193,9 @@ class PadawanClient:
             return True
 
         editor.callAfter(1e-4, LogRemoving)
+
+    def GetInstalledPlugins(self):
+        return self.DoRequest("plugins")["plugins"]
 
     def Generate(self, filepath):
         curPath = self.GetProjectRoot(filepath)

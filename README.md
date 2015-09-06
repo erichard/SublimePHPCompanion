@@ -56,6 +56,31 @@ the "goto_definition" command if a match was not found.
 
 Hit `F7` (personal shortcut) to insert both a constructor argument and its according property. The property will be `private` by default but you can change it with the `visibility` setting.
 
+### padawan_start_server
+
+This command will start padawan.php server, so that you'll be able to get completions
+
+### padawan_stop_server
+
+This command will stop padawan.php server, so that you'll have default sublime completions
+
+### padawan_generate_index
+
+This command will generate index for the composer project that current file belongs to.
+**Warning:** This command require a filename so the command won't work in an unsaved buffer.
+
+### padawan_plugin_add
+
+This command will install(download and register) plugin by it's name.
+You can find [plugins list here](
+https://github.com/mkusher/padawan.php/wiki/Plugins-list)
+**Warning:** You have to configure composer command for plugin installation
+
+### padawan_plugin_remove
+
+This command will remove plugin.
+**Warning:** You have to configure composer command for plugin removing
+
 ## Settings
 
 Settings can be stored either in your system wide "PHP Companion.sublime-settings" file or in the project
@@ -104,6 +129,11 @@ namespace Vendor\Project\Foo;
 ### use_sort_length
 
 When importing use statements with the `find_use` command, sort statements by the length of the line.
+
+### padawan_composer
+
+Command for running composer, e.g. `php /path/to/composer.phar` or `composer.phar` depending
+on the place, where you've installed composer.
 
 ## Licence
 
