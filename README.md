@@ -16,7 +16,7 @@ Just search for PHP Companion in package control and you're ready.
 
 ### Keybinding
 
-The package no longer provides keybindings. You will have to install your own shortcuts. The [Default.sublime-keymap-sample](/Default.sublime-keymap-sample) will give you the shortcuts I personally.
+The package no longer provides keybindings. You will have to install your own shortcuts. The [Default.sublime-keymap-sample](/Default.sublime-keymap-sample) will give you the shortcuts I personally use.
 
 ## Commands
 
