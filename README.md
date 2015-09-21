@@ -56,6 +56,10 @@ the "goto_definition" command if a match was not found.
 
 Hit `F7` (personal shortcut) to insert both a constructor argument and its according property. The property will be `private` by default but you can change it with the `visibility` setting.
 
+### import_methods
+
+Place your cursor on an interface or abstract class name and hit the `F3` key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
+
 ## Settings
 
 Settings can be stored either in your system wide "PHP Companion.sublime-settings" file or in the project
