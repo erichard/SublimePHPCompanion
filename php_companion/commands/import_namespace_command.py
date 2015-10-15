@@ -27,8 +27,11 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
         namespaceStmt = namespaceStmt.strip("\\")
 
         # Add an optional prefix - may be per project
-        if get_setting("namespace_prefix", None):
-            namespaceStmt = get_setting("namespace_prefix", '') + "\\" + namespaceStmt
+        namespacePrefix = get_setting('namespace_prefix', '').strip('\\')
+        if namespacePrefix:
+            if namespaceStmt:
+                namespacePrefix += "\\"
+            namespaceStmt = namespacePrefix + namespaceStmt
 
         line_contents = "namespace " + namespaceStmt + ";"
 
