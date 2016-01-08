@@ -81,6 +81,10 @@ https://github.com/mkusher/padawan.php/wiki/Plugins-list)
 This command will remove plugin.
 **Warning:** You have to configure composer command for plugin removing
 
+### import_methods
+
+Place your cursor on a class, abstract class or interface name and hit the `F3` key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
+
 ## Settings
 
 Settings can be stored either in your system wide "PHP Companion.sublime-settings" file or in the project
