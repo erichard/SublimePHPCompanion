@@ -135,9 +135,22 @@ class InsertConstructorPropertyCommand(sublime_plugin.TextCommand):
         self.add_region(cursor_start, cursor_end)
 
     def find_class_opening_bracket(self):
-        'Find the position of the opening bracket of the class block.'
-        pos = self.view.find(r'class\s+[0-9A-Za-z_]+', 0).end()
-        return self.view.find(r'\{', pos).end()
+        'Get current cursor position'
+        cursorRegion = self.view.sel()[0]
+
+        'Find all classes in this file'
+        classRegions = self.view.find_all(r'class\s+[0-9A-Za-z_]+', 0);
+
+        'Loop through the class regions and save their distances from the cursor'
+        distances = [];
+        for classRegion in classRegions:
+            distances.append(abs(cursorRegion.end() - classRegion.end()))
+
+        'Get the class region that is closest to the cursor'
+        closestClassRegion = classRegions[distances.index(min(distances))]
+
+        'Return the opening bracket position'
+        return self.view.find(r'\{', closestClassRegion.end()).end()
 
     def find_properties(self):
         'Find all the class properties defined in the current view.'
