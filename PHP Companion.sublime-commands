@@ -4,11 +4,5 @@
   { "caption": "PHPCompanion:Import Namespace", "command": "import_namespace" },
   { "caption": "PHPCompanion:Goto Definition Scope", "command": "goto_definition_scope" },
   { "caption": "PHPCompanion:Insert Constructor Property", "command": "insert_php_constructor_property" },
-  { "caption": "PHPCompanion:Implement Interface", "command": "implement" },
-  { "caption": "Padawan:Start Server", "command": "padawan_start_server" },
-  { "caption": "Padawan:Restart Server", "command": "padawan_restart_server" },
-  { "caption": "Padawan:Stop Server", "command": "padawan_stop_server" },
-  { "caption": "Padawan:Add plugin", "command": "padawan_plugin_add" },
-  { "caption": "Padawan:Remove plugin", "command": "padawan_plugin_remove" },
-  { "caption": "Padawan:Generate Index", "command": "padawan_generate_index" }
+  { "caption": "PHPCompanion:Implement Interface", "command": "implement" }
 ]
