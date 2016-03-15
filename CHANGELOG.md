@@ -1,3 +1,7 @@
+## 2016-03-15
+
+ - Add an implement method. Useful for interface or abstract class.
+
 ## 2015-06-30
 
  - Add a insert_constructor_prop command to insert both contructor argument and property in one shot.
