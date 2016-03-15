@@ -4,7 +4,7 @@ class ParseCommand(sublime_plugin.TextCommand):
 
     # Normalizes a given path to the current system style
     # -- This method is from the PHP Companion utils file
-    # 
+    #
     def normalize_to_system_style_path(self, path):
         if sublime.platform() == "windows":
             path = re.sub(r"/([A-Za-z])/(.+)", r"\1:/\2", path)
@@ -12,7 +12,7 @@ class ParseCommand(sublime_plugin.TextCommand):
         return path
 
     # Runs the plugin
-    # 
+    #
     def run(self, edit, path):
         # Get the contents of the file at the given path
         with open(self.normalize_to_system_style_path(path), "r") as f:
@@ -27,7 +27,7 @@ class ParseCommand(sublime_plugin.TextCommand):
             self.view.window().show_quick_panel(self.methods, self.on_done)
 
     # Handles selection of a quick panel item
-    # 
+    #
     def on_done(self, index):
         if index == -1:
             return

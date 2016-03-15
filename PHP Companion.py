@@ -10,3 +10,6 @@ from .php_companion.commands.padawan_plugin_add_command import PadawanPluginAddC
 from .php_companion.commands.padawan_plugin_remove_command import PadawanPluginRemoveCommand
 from .php_companion.commands.padawan_server_commands import PadawanStopServerCommand, PadawanStartServerCommand, PadawanRestartServerCommand
 from .php_companion.listeners.padawan_completer import PadawanCompleter
+from .php_companion.commands.implement import ImplementCommand
+from .php_companion.commands.parse import ParseCommand
+from .php_companion.commands.create import CreateCommand
