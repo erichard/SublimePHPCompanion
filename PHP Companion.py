@@ -4,7 +4,7 @@ from .php_companion.commands.import_namespace_command import ImportNamespaceComm
 from .php_companion.commands.import_use_command import ImportUseCommand
 from .php_companion.commands.replace_fqcn_command import ReplaceFqcnCommand
 from .php_companion.commands.goto_definition_scope import GotoDefinitionScopeCommand
-from .php_companion.commands.insert_constructor_prop import InsertConstructorPropertyCommand
+from .php_companion.commands.insert_php_constructor_property import InsertPhpConstructorPropertyCommand
 from .php_companion.commands.padawan_generate_index_command import PadawanGenerateIndexCommand
 from .php_companion.commands.padawan_plugin_add_command import PadawanPluginAddCommand
 from .php_companion.commands.padawan_plugin_remove_command import PadawanPluginRemoveCommand

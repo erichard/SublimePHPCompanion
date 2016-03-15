@@ -3,15 +3,10 @@ import sublime_plugin
 
 from ..settings import get_setting
 
-
-class InsertConstructorPropertyCommand(sublime_plugin.TextCommand):
+class InsertPhpConstructorPropertyCommand(sublime_plugin.TextCommand):
     'Inserts a constructor argument that sets a property.'
 
     placeholder = 'PROPERTY'
-
-    def name(self):
-        'The name of the command, as used in key bindings.'
-        return 'insert_php_constructor_property'
 
     def description(self):
         'The description of the command.'
