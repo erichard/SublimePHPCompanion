@@ -1,5 +1,7 @@
 # Sublime PHP Companion
 
+[![Join the chat at https://gitter.im/erichard/SublimePHPCompanion](https://badges.gitter.im/erichard/SublimePHPCompanion.svg)](https://gitter.im/erichard/SublimePHPCompanion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
 ## Successor of SublimeCTagsPHP
