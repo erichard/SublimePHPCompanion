@@ -28,7 +28,7 @@ class ParseCommand(sublime_plugin.TextCommand):
             pos = content.index(m)
             try:
                 end = content.rindex("*/", 0, pos)
-                if len(re.findall(pattern, content[end:pos])) > 0:
+                if re.findall(pattern, content[end:pos]) or re.findall("(interface|abstract([A-Z0-9\s]+)class)\s+[A-Z0-9]+", content[end:pos]):
                     self.method_docblocks[m] = None
                     continue
 
@@ -64,15 +64,21 @@ class ParseCommand(sublime_plugin.TextCommand):
             methods = ""
             for method in self.methods[1:]:
                 if self.method_docblocks[method] != None:
-                    method = self.method_docblocks[method] + "\n\t" + method
+                    if self.view.settings().get("docblock_inherit") == True:
+                        method = self.method_docblocks[method] + "\n\t" + method
+                    elif self.view.settings().get("docblock_inherit") == "inheritdoc":
+                        method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
 
                 methods += template.format(method)
 
             self.view.run_command("create", {"stub": methods, "offset": point})
         else:
             method = self.methods[index]
-            if self.method_docblocks[method] != None:
-                method = self.method_docblocks[method] + "\n\t" + method
+            if self.view.settings().get("docblock_inherit") == True:
+                if self.method_docblocks[method] != None:
+                    method = self.method_docblocks[method] + "\n\t" + method
+            elif self.view.settings().get("docblock_inherit") == "inheritdoc":
+                method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
 
             method_stub = template.format(method)
             self.view.run_command("create", {"stub": method_stub, "offset": point})
