@@ -18,9 +18,9 @@ class ParseCommand(sublime_plugin.TextCommand):
         with open(self.normalize_to_system_style_path(path), "r") as f:
             content = f.read()
 
-        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*)"
+        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [\w]+\s*\(.*?\))\s*;"
         # Get the methods from the content
-        self.methods = re.findall(pattern, content)
+        self.methods = re.findall(pattern, content, re.S)
 
         # find comment docblocks
         self.method_docblocks = {}
@@ -28,7 +28,7 @@ class ParseCommand(sublime_plugin.TextCommand):
             pos = content.index(m)
             try:
                 end = content.rindex("*/", 0, pos)
-                if re.findall(pattern, content[end:pos]) or re.findall("(interface|abstract([A-Z0-9\s]+)class)\s+[A-Z0-9]+", content[end:pos]):
+                if re.findall(pattern, content[end:pos], re.S) or re.findall("(interface|abstract([A-Z0-9\s]+)class)\s+[A-Z0-9]+", content[end:pos]):
                     self.method_docblocks[m] = None
                     continue
 
