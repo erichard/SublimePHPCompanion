@@ -1,5 +1,7 @@
 import sublime, sublime_plugin, re
 
+from ..settings import get_setting
+
 class ParseCommand(sublime_plugin.TextCommand):
 
     # Normalizes a given path to the current system style
@@ -64,9 +66,9 @@ class ParseCommand(sublime_plugin.TextCommand):
             methods = ""
             for method in self.methods[1:]:
                 if self.method_docblocks[method] != None:
-                    if self.view.settings().get("docblock_inherit") == True:
+                    if get_setting("docblock_inherit") == True:
                         method = self.method_docblocks[method] + "\n\t" + method
-                    elif self.view.settings().get("docblock_inherit") == "inheritdoc":
+                    elif get_setting("docblock_inherit") == "inheritdoc":
                         method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
 
                 methods += template.format(method)
@@ -74,10 +76,10 @@ class ParseCommand(sublime_plugin.TextCommand):
             self.view.run_command("create", {"stub": methods, "offset": point})
         else:
             method = self.methods[index]
-            if self.view.settings().get("docblock_inherit") == True:
+            if get_setting("docblock_inherit") == True:
                 if self.method_docblocks[method] != None:
                     method = self.method_docblocks[method] + "\n\t" + method
-            elif self.view.settings().get("docblock_inherit") == "inheritdoc":
+            elif get_setting("docblock_inherit") == "inheritdoc":
                 method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
 
             method_stub = template.format(method)
