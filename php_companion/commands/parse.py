@@ -18,8 +18,9 @@ class ParseCommand(sublime_plugin.TextCommand):
         with open(self.normalize_to_system_style_path(path), "r") as f:
             content = f.read()
 
+        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*)"
         # Get the methods from the content
-        self.methods = re.findall("(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*)", content)
+        self.methods = re.findall(pattern, content)
 
         # find comment docblocks
         self.method_docblocks = {}
@@ -27,6 +28,10 @@ class ParseCommand(sublime_plugin.TextCommand):
             pos = content.index(m)
             try:
                 end = content.rindex("*/", 0, pos)
+                if len(re.findall(pattern, content[end:pos])) > 0:
+                    self.method_docblocks[m] = None
+                    continue
+
                 start = content.rindex("/**", 0, end)
                 self.method_docblocks[m] = content[start:end + 2]
             except ValueError:
@@ -56,12 +61,14 @@ class ParseCommand(sublime_plugin.TextCommand):
 
         # Better way to handle add all selection?
         if index == 0:
+            methods = ""
             for method in self.methods[1:]:
                 if self.method_docblocks[method] != None:
                     method = self.method_docblocks[method] + "\n\t" + method
 
-                method_stub = template.format(method)
-                self.view.run_command("create", {"stub": method_stub, "offset": point})
+                methods += template.format(method)
+
+            self.view.run_command("create", {"stub": methods, "offset": point})
         else:
             method = self.methods[index]
             if self.method_docblocks[method] != None:
