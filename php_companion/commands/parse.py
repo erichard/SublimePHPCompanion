@@ -19,7 +19,7 @@ class ParseCommand(sublime_plugin.TextCommand):
             content = f.read()
 
         # Get the methods from the content
-        self.methods = re.findall("(?<!\* )(?:abstract )?(?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*", content)
+        self.methods = re.findall("(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*)", content)
         self.methods.insert(0, 'Insert all methods')
 
         # Show the available methods in the quick panel
