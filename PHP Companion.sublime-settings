@@ -17,6 +17,10 @@
     // command. "public", "protected" or "private"
     "visibility": "private",
 
+    // Copy comment doc from parent or interface to implemented class
+    // "true" or "inheritdoc".
+    "docblock_inherit": true,
+
     "padawan_composer": "composer",
     "padawan_timeout": 0.5
 }

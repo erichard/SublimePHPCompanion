@@ -1,5 +1,7 @@
 import sublime, sublime_plugin, re
 
+from ..settings import get_setting
+
 class ParseCommand(sublime_plugin.TextCommand):
 
     # Normalizes a given path to the current system style
@@ -18,8 +20,25 @@ class ParseCommand(sublime_plugin.TextCommand):
         with open(self.normalize_to_system_style_path(path), "r") as f:
             content = f.read()
 
+        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)? function [\w]+\s*\(.*?\))\s*;"
         # Get the methods from the content
-        self.methods = re.findall("(?<!\* )(?:abstract )?(?:public|protected|private)(?: static)? function [A-z0-9]*\([A-z0-9$=, ]*\)[A-z :]*", content)
+        self.methods = re.findall(pattern, content, re.S)
+
+        # find comment docblocks
+        self.method_docblocks = {}
+        for m in self.methods:
+            pos = content.index(m)
+            try:
+                end = content.rindex("*/", 0, pos)
+                if re.findall(pattern, content[end:pos], re.S) or re.findall("(interface|abstract([A-Z0-9\s]+)class)\s+[A-Z0-9]+", content[end:pos]):
+                    self.method_docblocks[m] = None
+                    continue
+
+                start = content.rindex("/**", 0, end)
+                self.method_docblocks[m] = content[start:end + 2]
+            except ValueError:
+                self.method_docblocks[m] = None
+
         self.methods.insert(0, 'Insert all methods')
 
         # Show the available methods in the quick panel
@@ -44,9 +63,24 @@ class ParseCommand(sublime_plugin.TextCommand):
 
         # Better way to handle add all selection?
         if index == 0:
+            methods = ""
             for method in self.methods[1:]:
-                method_stub = template.format(method)
-                self.view.run_command("create", {"stub": method_stub, "offset": point})
+                if self.method_docblocks[method] != None:
+                    if get_setting("docblock_inherit") == True:
+                        method = self.method_docblocks[method] + "\n\t" + method
+                    elif get_setting("docblock_inherit") == "inheritdoc":
+                        method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
+
+                methods += template.format(method)
+
+            self.view.run_command("create", {"stub": methods, "offset": point})
         else:
-            method_stub = template.format(self.methods[index])
+            method = self.methods[index]
+            if get_setting("docblock_inherit") == True:
+                if self.method_docblocks[method] != None:
+                    method = self.method_docblocks[method] + "\n\t" + method
+            elif get_setting("docblock_inherit") == "inheritdoc":
+                method = "\n\t".join(["/**", " * {@inheritdoc}", "*/"]) + "\n\t" + method
+
+            method_stub = template.format(method)
             self.view.run_command("create", {"stub": method_stub, "offset": point})
