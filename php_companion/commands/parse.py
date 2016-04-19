@@ -69,7 +69,7 @@ class ParseCommand(sublime_plugin.TextCommand):
                     if get_setting("docblock_inherit") == True:
                         method = self.method_docblocks[method] + "\n\t" + method
                     elif get_setting("docblock_inherit") == "inheritdoc":
-                        method = "\n\t".join(["/**", " * {@inheirtdoc}", "*/"]) + "\n\t" + method
+                        method = "\n\t".join(["/**", " * {@inheritdoc}", "*/"]) + "\n\t" + method
 
                 methods += template.format(method)
 

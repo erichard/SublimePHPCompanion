@@ -1,3 +1,10 @@
+## 2016-04-19
+
+ - The implemenent method doe not copy the abstract keyword anymore.
+ - New option `docblock_inherit` to copy the parent docblock. Allowed values are :
+    - `true` (Default) : Copy the parent docblock
+    - `inheritdoc`: Add a `@{inheritDoc}` docblock
+
 ## 2016-03-15
 
  - Add an implement method. Useful for interface or abstract class.
