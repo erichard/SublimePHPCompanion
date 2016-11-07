@@ -20,7 +20,7 @@ class ParseCommand(sublime_plugin.TextCommand):
         with open(self.normalize_to_system_style_path(path), "r") as f:
             content = f.read()
 
-        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)?\s+function\s+[\w]+\s*\(.*?\))(?:\s*;|.*?{)"
+        pattern = "(?<!\* )(?:abstract )?((?:public|protected|private)(?: static)?\s+function\s+[\w]+\s*\(.*?\)(?:\s*\:\s*\w+)?)(?:\s*;|.*?{)"
         # Get the methods from the content
         self.methods = re.findall(pattern, content, re.S)
 
