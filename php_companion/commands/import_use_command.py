@@ -8,7 +8,7 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         self.namespace = namespace
 
         if self.is_already_used():
-            return sublime.status_message('Use already exist !')
+            return sublime.status_message('Use already exist!')
 
         self.insert_use(edit)
 
