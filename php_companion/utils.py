@@ -16,7 +16,7 @@ def normalize_to_system_style_path(path):
 
 def find_symbol(symbol, window):
     files = window.lookup_symbol_in_index(symbol)
-    namespaces = []
+    namespaces = {}
     pattern = re.compile(b'namespace\s+([^;]+);', re.MULTILINE)
 
     def filter_file(file):
@@ -33,13 +33,17 @@ def find_symbol(symbol, window):
             with open(normalize_to_system_style_path(file[0]), "rb") as f:
                 with contextlib.closing(mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)) as m:
                     for match in re.findall(pattern, m):
-                        namespaces.append([match.decode('utf-8') + "\\" + symbol, file[1]])
+                        namespaces[match.decode('utf-8') + "\\" + symbol] = file[1]
                         break
 
     if get_setting('allow_use_from_global_namespace', False):
-        namespaces += find_in_global_namespace(symbol)
+        namespaces.update(find_in_global_namespace(symbol))
 
-    return namespaces
+    namespacesArray = []
+    for key, value in sorted(namespaces.items()):
+        namespacesArray.append([key, value]);
+
+    return namespacesArray
 
 def find_in_global_namespace(symbol):
     definedClasses = subprocess.check_output(["php", "-r", "echo json_encode(get_declared_classes());"]);
@@ -47,9 +51,9 @@ def find_in_global_namespace(symbol):
     definedClasses = json.loads(definedClasses)
     definedClasses.sort()
 
-    matches = []
+    matches = {}
     for phpClass in definedClasses:
         if symbol == phpClass:
-            matches.append([phpClass, phpClass])
+            matches[phpClass] = phpClass
 
     return matches
