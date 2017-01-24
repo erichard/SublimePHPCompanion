@@ -6,7 +6,7 @@ This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
 ## Successor of SublimeCTagsPHP
 
-This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP). PHP Companion use the built-in index of Sublime Text 3 instead of CTags.
+This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP). PHP Companion uses the built-in index of Sublime Text 3 instead of CTags.
 
 **Warning!** PHP Companion does not work on Sublime Text 2 and never will.
 
@@ -26,16 +26,16 @@ The package no longer provides keybindings. You will have to install your own sh
 
 Just bring your cursor hover a class name, hit the `F5` key (personal shortcut) and that's it.
 
-It will show you the different namespace that match your class, pick up one and your done.
+It will show you the different namespace that match your class, pick up one and you're done.
 
 PHP Companion will sort your uses statement in alphabetical order. This can be
 configured to sort by line length with the `use_sort_length` user setting.
 
 ### expand_fqcn
 
-This command expand the class under the cursor to its FQCN (Fully Qualified Class Name).
+This command expands the class under the cursor to its FQCN (Fully Qualified Class Name).
 You have two keys for this command `F6` and `shift+F6` (personal shortcut) that respectively expand
-without and with the leading namespace separator `\`.
+with and without the leading namespace separator `\`.
 
 ### import_namespace
 
@@ -47,7 +47,7 @@ folder.
 If a namespace is already declared, the command will shout how crazy you are in
 the status bar.
 
-**Warning:** This feature require a filename so the command won't work in an unsaved buffer.
+**Warning:** This feature requires a filename so the command won't work in an unsaved buffer.
 
 ### goto_definition_scope
 
@@ -69,11 +69,11 @@ This command will stop padawan.php server, so that you'll have default sublime c
 ### padawan_generate_index
 
 This command will generate index for the composer project that current file belongs to.
-**Warning:** This command require a filename so the command won't work in an unsaved buffer.
+**Warning:** This command requires a filename so the command won't work in an unsaved buffer.
 
 ### padawan_plugin_add
 
-This command will install(download and register) plugin by it's name.
+This command will install (download and register) plugin by its name.
 You can find [plugins list here](
 https://github.com/mkusher/padawan.php/wiki/Plugins-list)
 **Warning:** You have to configure composer command for plugin installation
@@ -85,7 +85,7 @@ This command will remove plugin.
 
 ### implement
 
-Place your cursor on a class, abstract class or interface name and hit the `F3` key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
+Place your cursor on a class, abstract class or an interface name and hit the `F3` key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
 
 ## Settings
 
@@ -107,7 +107,7 @@ If you're storing settings in a project file, put them in a phpcompanion node li
 ### exclude_dir
 
 List of directories to exclude when searching for the class declaration file.
-Path are relative to the project directory.
+Path is relative to the project directory.
 
 Please note that the filtering is done after the search in the index. So this option has no impact on performance,
 it's just a convenient way to avoid duplicate namespace declaration in some case.
