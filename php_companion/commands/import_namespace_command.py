@@ -8,47 +8,63 @@ from ..settings import get_setting
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-
         # Filename to namespace
-        filename = self.view.file_name()
+        file_name = self.view.file_name()
 
         # Abort if the file is not PHP
-        if (not filename.endswith(".php")):
-            sublime.error_message("No .php extension")
+        if not file_name.endswith('.php'):
+            sublime.error_message('No .php extension')
             return
 
         # namespace begin at first camelcase dir
-        namespaceStmt = os.path.dirname(filename)
+        namespace_stmt = os.path.dirname(file_name)
 
-        pattern = re.compile(get_setting("start_dir_pattern", "^.*?((?:\/[A-Z][^\/]*)+)$"))
+        pattern = re.compile(get_setting('start_dir_pattern', '^.*?((?:\/[A-Z][^\/]*)+)$'))
 
-        namespaceStmt = re.sub(pattern, '\\1', namespaceStmt)
-        namespaceStmt = re.sub('/', '\\\\', namespaceStmt)
-        namespaceStmt = namespaceStmt.strip("\\")
+        namespace_stmt = re.sub(pattern, '\\1', namespace_stmt)
+        namespace_stmt = re.sub('/', '\\\\', namespace_stmt)
+        namespace_stmt = namespace_stmt.strip('\\')
 
         # Add an optional prefix - may be per project
         namespacePrefix = get_setting('namespace_prefix', '').strip('\\')
         if namespacePrefix:
-            if namespaceStmt:
-                namespacePrefix += "\\"
-            namespaceStmt = namespacePrefix + namespaceStmt
+            if namespace_stmt:
+                namespacePrefix += '\\'
+            namespace_stmt = namespacePrefix + namespace_stmt
 
-        line_contents = "namespace " + namespaceStmt + ";"
+        # Ensuring PHP tag presence
+        php_tag = '<?php'
+        php_regex = php_tag.replace('?', '\?')
+        php_region = self.view.find(php_regex, 0)
+        if php_region.empty():
+            line = self.view.line(php_region)
+            self.view.insert(edit, 0, php_tag)
 
-        if "inline" == get_setting("namespace_position", "newline"):
-            line_contents = " " + line_contents
-        else:
-            line_contents = '\n\n' + line_contents
+        # Removing existing namespace
+        namespace_region = self.view.find(r'\s*namespace\s[\w\\]+;', 0)
+        if not namespace_region.empty():
+            self.view.replace(edit, namespace_region, '')
 
-        region = self.view.find(r"^(<\?php){0,1}\s*namespace\s[\w\\]+;", 0)
+        # Adding namespace
+        namespace_position = get_setting('namespace_position')
+        namespace_contents = ' ' if 'inline' == namespace_position else '\n\n';
+        namespace_contents += 'namespace ' + namespace_stmt + ';'
+        if namespace_position != 'inline':
+            php_regex += r'(\s*\/\*(?:[^*]|\n|(?:\*(?:[^\/]|\n)))*\*\/)?'
+        php_docblock_region = self.view.find(php_regex, 0)
+        if not php_docblock_region.empty():
+            line = self.view.line(php_docblock_region)
+            self.view.insert(edit, line.end(), namespace_contents)
 
-        if not region.empty():
-            self.view.replace(edit, region, '<?php' + line_contents)
-            return True
+class ImportNamespaceEventListener(sublime_plugin.EventListener):
+    def on_pre_save(self, view):
+        settings = sublime.load_settings('PHP Companion.sublime-settings')
+        enable_import_namespace_on_save = settings.get('enable_import_namespace_on_save', False)
+        file_name = view.file_name()
 
-        region = self.view.find(r"<\?php", 0)
-        if not region.empty():
+        if isinstance(enable_import_namespace_on_save, str):
+            search = re.search(enable_import_namespace_on_save, file_name)
+            enable_import_namespace_on_save = search != None
 
-            line = self.view.line(region)
-            self.view.insert(edit, line.end(), line_contents)
-            return True
+        if enable_import_namespace_on_save and file_name.endswith('.php'):
+            view.run_command('import_namespace')
