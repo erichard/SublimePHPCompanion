@@ -50,7 +50,7 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         self.view.find_all(r"^(use\s+.+[;])", 0, '$1', uses)
         uses.append(use_stmt)
         uses = list(set(uses))
-        uses.sort()
+        uses.sort(key = str.lower)
         if get_setting("use_sort_length"):
             uses.sort(key = len)
 
