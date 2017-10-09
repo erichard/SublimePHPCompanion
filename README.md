@@ -24,7 +24,7 @@ The package no longer provides keybindings. You will have to install your own sh
 
 ### find_use
 
-Just bring your cursor hover a class name, hit the `F5` key (personal shortcut) and that's it.
+Just bring your cursor hover a class name, hit the <kbd>F5</kbd> key (personal shortcut) and that's it.
 
 It will show you the different namespace that match your class, pick up one and you're done.
 
@@ -34,12 +34,12 @@ configured to sort by line length with the `use_sort_length` user setting.
 ### expand_fqcn
 
 This command expands the class under the cursor to its FQCN (Fully Qualified Class Name).
-You have two keys for this command `F6` and `shift+F6` (personal shortcut) that respectively expand
+You have two keys for this command <kbd>F6</kbd> and <kbd>shift+F6</kbd> (personal shortcut) that respectively expand
 with and without the leading namespace separator `\`.
 
 ### import_namespace
 
-Just hit the `F4` key (personal shortcut), it will add the namespace definition based on the absolute
+Just hit the <kbd>F4</kbd> key (personal shortcut), it will add the namespace definition based on the absolute
 filename of the current file. I use a simple trick to determine where the
 namespace begun, actually the namespace will start at the first CamelCased
 folder.
@@ -51,16 +51,19 @@ the status bar.
 
 ### goto_definition_scope
 
-Hit `shift+F12` (personal shortcut) to search for a method definition based on the current scope. It will fallback to
+Hit <kbd>shift+F12</kbd> (personal shortcut) to search for a method definition based on the current scope. It will fallback to
 the "goto_definition" command if a match was not found.
 
 ### insert_php_constructor_property
 
-Hit `F7` (personal shortcut) to insert both a constructor argument and its according property. The property will be `private` by default but you can change it with the `visibility` setting.
+Hit <kbd>F7</kbd> (personal shortcut) to insert both a constructor argument and its according property. The property will be `private` by default but you can change it with the `visibility` setting.
 
 ### implement
 
-Place your cursor on a class, abstract class or an interface name and hit the `F3` key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
+Place your cursor on a class, abstract class or an interface name and hit the <kbd>F3</kbd> key (personal shortcut). Matching interfaces or classes will be shown. Select one and then import all or one of the methods from that interface or class.
+
+See `use_todo_implement` setting.
+
 
 ## Settings
 
@@ -109,7 +112,30 @@ namespace Vendor\Project\Foo;
 
 ### use_sort_length
 
-When importing use statements with the `find_use` command, sort statements by the length of the line.
+When importing use statements with the <kbd>find_use</kbd> command, sort statements by the length of the line.
+
+### use_todo_implement
+
+When an interface or abstract class is implemented, this option is used to customize the method body of the newly added methods.
+
+The available options are true and false.
+
+`"use_todo_implement": true`:
+```
+public function methodName()
+{
+    // TODO: Implement 'methodName' method.
+}
+```
+
+`"use_todo_implement": false`:
+```
+public function methodName()
+{
+    throw new \Exception("Method 'methodname' not implemented");
+}
+```
+
 
 ## Licence
 

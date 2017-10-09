@@ -59,7 +59,11 @@ class ParseCommand(sublime_plugin.TextCommand):
         region = closing_brackets[-1]
         point = region.end() - 1
 
-        template = "\n\t{0}\n\t{{\n\t\tthrow new \Exception('Method not implemented');\n\t}}\n"
+        # Choose format to indicate that the method body is yet to be implemented.
+        if get_setting("use_todo_implement") == True:
+            template = "\n\t{0}\n\t{{\n\t\t// TODO: Implement {1}() method.\n\t}}\n"
+        else:
+            template = "\n\t{0}\n\t{{\n\t\tthrow new \Exception('Method {1}() is not implemented.');\n\t}}\n"
 
         # Better way to handle add all selection?
         if index == 0:
@@ -71,7 +75,9 @@ class ParseCommand(sublime_plugin.TextCommand):
                     elif get_setting("docblock_inherit") == "inheritdoc":
                         method = "\n\t".join(["/**", " * {@inheritdoc}", "*/"]) + "\n\t" + method
 
-                methods += template.format(method)
+                pattern = ".+\s+function\s+([\w]+).+"
+                methodname = re.findall(pattern, method)[0]
+                methods += template.format(method, methodname)
 
             self.view.run_command("create", {"stub": methods, "offset": point})
         else:
