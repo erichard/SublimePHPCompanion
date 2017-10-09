@@ -1,0 +1,12 @@
+v1.3.3 2017-10-09
+-------------
+
+1.  Added new `use_todo_implement` setting which accompanies `implement` command.
+    With this setting users can determines what to show as a message to indicate
+    that the method body is yet to be implemented.
+
+    The possible values for the setting `use_todo_implement` are:
+    true to use TODO statement and
+    false to use old \Exception statement
+
+2.  Readme updated.
