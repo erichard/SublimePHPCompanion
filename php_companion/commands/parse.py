@@ -61,9 +61,9 @@ class ParseCommand(sublime_plugin.TextCommand):
 
         # Choose format to indicate that the method body is yet to be implemented.
         if get_setting("use_todo_implement") == True:
-            template = "\n\t{0}\n\t{{\n\t\t// TODO: Implement '{1}' method.\n\t}}\n"
+            template = "\n\t{0}\n\t{{\n\t\t// TODO: Implement {1}() method.\n\t}}\n"
         else:
-            template = "\n\t{0}\n\t{{\n\t\tthrow new \Exception(\"Method '{1}' not implemented\");\n\t}}\n"
+            template = "\n\t{0}\n\t{{\n\t\tthrow new \Exception('Method {1}() is not implemented');\n\t}}\n"
 
         # Better way to handle add all selection?
         if index == 0:
