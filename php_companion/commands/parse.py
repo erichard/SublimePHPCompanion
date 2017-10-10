@@ -88,5 +88,8 @@ class ParseCommand(sublime_plugin.TextCommand):
             elif get_setting("docblock_inherit") == "inheritdoc":
                 method = "\n\t".join(["/**", " * {@inheritdoc}", "*/"]) + "\n\t" + method
 
-            method_stub = template.format(method)
+                pattern = ".+\s+function\s+([\w]+).+"
+                methodname = re.findall(pattern, method)[0]
+                method_stub = template.format(method, methodname)
+
             self.view.run_command("create", {"stub": method_stub, "offset": point})
