@@ -52,7 +52,7 @@ def find_in_global_namespace(symbol):
         startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
     definedClasses = subprocess.check_output(
-        ["php", "-r", "echo json_encode(get_declared_classes());"],
+        ["php", "-r", "echo json_encode(array_merge(get_declared_classes(), get_declared_interfaces()));"],
         startupinfo=startupinfo
     )
 
