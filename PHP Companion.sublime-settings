@@ -24,6 +24,11 @@
     // "true" or "inheritdoc".
     "docblock_inherit": true,
 
+    // Format of the message when an interface is implemented
+    // true: TODO statement
+    // false: Exception
+    "use_todo_implement": false,
+
     "padawan_composer": "composer",
     "padawan_timeout": 0.5
 }

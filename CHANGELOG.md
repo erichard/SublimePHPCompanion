@@ -1,3 +1,9 @@
+## 2017-10-09
+
+ - Added new option `use_todo_implement` to choose between the formats that appear in method bodies of the implemented function. Allowed values are :
+    - `false` (Default) : `throw new \Exception("Method 'methodname' not implemented");`
+    - `true`: `// TODO: Implement 'methodName' method.`
+
 ## 2016-04-19
 
  - The implemenent method doe not copy the abstract keyword anymore.
