@@ -9,4 +9,4 @@ from .php_companion.commands.implement import ImplementCommand
 from .php_companion.commands.parse import ParseCommand
 from .php_companion.commands.create import CreateCommand
 
-from .php_companion.commands.import_namespace_command import ImportNamespaceEventListener
+#from .php_companion.commands.import_namespace_command import ImportNamespaceEventListener
