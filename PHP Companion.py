@@ -8,5 +8,3 @@ from .php_companion.commands.insert_php_constructor_property import InsertPhpCon
 from .php_companion.commands.implement import ImplementCommand
 from .php_companion.commands.parse import ParseCommand
 from .php_companion.commands.create import CreateCommand
-
-#from .php_companion.commands.import_namespace_command import ImportNamespaceEventListener
