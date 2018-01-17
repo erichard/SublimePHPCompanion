@@ -47,7 +47,9 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
 
         # Adding namespace
         namespace_position = get_setting('namespace_position')
-        namespace_contents = ' ' if 'inline' == namespace_position else '\n\n';
+        namespace_contents = ' '
+        if namespace_position != 'inline':
+            namespace_contents = '\n' * get_setting('namespace_blank_lines', 2)
         namespace_contents += 'namespace ' + namespace_stmt + ';'
         if namespace_position != 'inline':
             php_regex += r'(\s*\/\*(?:[^*]|\n|(?:\*(?:[^\/]|\n)))*\*\/)?'

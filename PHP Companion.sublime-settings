@@ -10,6 +10,10 @@
     // Use "inline" to include the namespace just after the <?php opening tag
     "namespace_position": "newline",
 
+    // If using "newline" for "namespace_position", how many newlines to
+    // insert after opening tag
+    "namespace_blank_lines": 2,
+
     // Automatically import namespace on save
     "enable_import_namespace_on_save": false,
 
