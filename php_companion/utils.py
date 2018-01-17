@@ -46,7 +46,7 @@ def find_symbol(symbol, window):
     return namespacesArray
 
 def find_in_global_namespace(symbol):
-    definedClasses = subprocess.check_output(["php", "-r", "echo json_encode(get_declared_classes(), get_declared_interfaces());"]);
+    definedClasses = subprocess.check_output(["php", "-r", "echo json_encode(array_merge(get_declared_classes(), get_declared_interfaces()));"]);
     definedClasses = definedClasses.decode('utf-8')
     definedClasses = json.loads(definedClasses)
     definedClasses.sort()
