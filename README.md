@@ -1,14 +1,8 @@
-[![Gitter](https://badges.gitter.im/erichard/SublimePHPCompanion.svg)](https://gitter.im/erichard/SublimePHPCompanion?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
 # Sublime PHP Companion
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
-## Successor of SublimeCTagsPHP
-
-This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP). PHP Companion uses the built-in index of Sublime Text 3 instead of CTags.
-
-**Warning!** PHP Companion does not work on Sublime Text 2 and never will.
+**Note** I am looking for a maintainer for this project because I have switched to vim.
 
 ## Installation
 
@@ -135,6 +129,12 @@ public function methodName()
     throw new \Exception("Method 'methodname' not implemented");
 }
 ```
+
+## Successor of SublimeCTagsPHP
+
+This plugin is the successor of [SublimeCTagsPHP](https://github.com/erichard/SublimeCTagsPHP). PHP Companion uses the built-in index of Sublime Text 3 instead of CTags.
+
+**Warning!** PHP Companion does not work on Sublime Text 2 and never will.
 
 
 ## Licence
