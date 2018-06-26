@@ -1,5 +1,6 @@
 ## 2018-06-26
  - Message during import_use are now displayed in tooltip instead of status bar
+ - New option `namespace_blank_lines` allow to configure the number of newline between `<?php` and the inserted namespace
 
 ## 2017-10-09
 
