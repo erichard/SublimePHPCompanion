@@ -1,3 +1,6 @@
+## 2018-06-26
+ - Message during import_use are now displayed in tooltip instead of status bar
+
 ## 2017-10-09
 
  - Added new option `use_todo_implement` to choose between the formats that appear in method bodies of the implemented function. Allowed values are :
