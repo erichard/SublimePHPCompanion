@@ -8,7 +8,8 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         self.namespace = namespace
 
         if self.is_already_used():
-            return sublime.status_message('Use already exist!')
+            return self.view.show_popup('Use already exist!',
+                                        flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY)
 
         self.insert_use(edit)
 
@@ -27,8 +28,8 @@ class ImportUseCommand(sublime_plugin.TextCommand):
         if not region.empty():
             line = self.view.line(region)
             self.view.insert(edit, line.end(), "\n\n" + self.build_uses())
-            sublime.status_message('Successfully imported ' + self.namespace)
-
+            self.view.show_popup('Successfully imported ' + self.namespace,
+                                 flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY)
             return True
 
         return False
@@ -41,7 +42,8 @@ class ImportUseCommand(sublime_plugin.TextCommand):
                 region = region.cover(r)
 
             self.view.replace(edit, region, self.build_uses())
-            sublime.status_message('Successfully imported ' + self.namespace)
+            self.view.show_popup('Successfully imported ' + self.namespace,
+                                 flags=sublime.HIDE_ON_MOUSE_MOVE_AWAY)
 
     def build_uses(self):
         uses = []
