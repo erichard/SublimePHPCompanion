@@ -10,6 +10,8 @@ class FindUseCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         view = self.view
         symbol = view.substr(view.word(view.sel()[0]))
+        if symbol.startswith('@'):
+            symbol = symbol.replace('@', '')
 
         if re.match(r"\w", symbol) is None:
             return sublime.status_message('Not a valid symbol "%s" !' % symbol)
