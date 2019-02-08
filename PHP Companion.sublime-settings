@@ -14,9 +14,6 @@
     // insert after opening tag
     "namespace_blank_lines": 2,
 
-    // Automatically import namespace on save
-    "enable_import_namespace_on_save": false,
-
     // Sort the list of use statements by their line length
     "use_sort_length": false,
 
