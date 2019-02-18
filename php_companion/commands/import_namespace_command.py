@@ -12,7 +12,7 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
         file_name = self.view.file_name()
 
         # Abort if the file is not PHP
-        if not file_name.endswith('.php'):
+        if not (file_name.endswith('.php') or file_name.endswith('.install') or file_name.endswith('.module')):
             sublime.error_message('No .php extension')
             return
 
