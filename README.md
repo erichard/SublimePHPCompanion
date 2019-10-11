@@ -68,7 +68,6 @@ If you're storing settings in a project file, put them in a phpcompanion node li
 
 ```
 "phpcompanion": {
-    "namespace_prefix": "VendorName\Project\Foo\Bar",
     "exclude_dir": [
         "vendor",
         "build"
@@ -83,26 +82,6 @@ Path is relative to the project directory.
 
 Please note that the filtering is done after the search in the index. So this option has no impact on performance,
 it's just a convenient way to avoid duplicate namespace declaration in some case.
-
-### start_dir_pattern
-
-The pattern used to guess the namespace in the `import_namespace` command.
-The default pattern should work for most uses cases but you can change it if
-your projects are stored in different way.
-
-### namespace_prefix
-
-If you have a namespace which is not fully exposed by the file path, you can set a namespace prefix. For example, suppose you have a class in
-
-```
-src/Foo/Bar.php
-```
-
-adding a namespace_prefix of 'Vendor\Project' would result in a resolved namespace declaration of
-
-```
-namespace Vendor\Project\Foo;
-```
 
 ### use_sort_length
 

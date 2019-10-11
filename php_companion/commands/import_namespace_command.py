@@ -5,32 +5,21 @@ import os
 import re
 
 from ..settings import get_setting
+from ..utils import get_namespace, get_active_project_path
 
 class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        # Filename to namespace
-        file_name = self.view.file_name()
+        projectPath = get_active_project_path()
+        file_name = self.view.file_name().replace(projectPath, '')
+        if file_name.startswith('/'):
+            file_name = file_name[1:]
 
         # Abort if the file is not PHP
         if not (file_name.endswith('.php') or file_name.endswith('.install') or file_name.endswith('.module')):
             sublime.error_message('No .php extension')
             return
 
-        # namespace begin at first camelcase dir
-        namespace_stmt = os.path.dirname(file_name)
-
-        pattern = re.compile(get_setting('start_dir_pattern', '^.*?((?:\/[A-Z][^\/]*)+)$'))
-
-        namespace_stmt = re.sub(pattern, '\\1', namespace_stmt)
-        namespace_stmt = re.sub('/', '\\\\', namespace_stmt)
-        namespace_stmt = namespace_stmt.strip('\\')
-
-        # Add an optional prefix - may be per project
-        namespacePrefix = get_setting('namespace_prefix', '').strip('\\')
-        if namespacePrefix:
-            if namespace_stmt:
-                namespacePrefix += '\\'
-            namespace_stmt = namespacePrefix + namespace_stmt
+        namespace_stmt = get_namespace(os.path.dirname(file_name))
 
         # Ensuring PHP tag presence
         php_tag = '<?php'

@@ -1,0 +1,10 @@
+v2.0.0 2019-10-11
+-----------------
+
+1. PSR-4 support is finally here !
+
+   Thanks to @flashios09 and @dakira, we finally managed to get PSR-4 support. 
+   The plugin is now able to read your project composer.json and extract psr-4 information in autoload and autoload-dev settings.
+
+   With this big improvement, we do not need `start_dir_pattern` and `namespace_prefix` settings anymore.
+

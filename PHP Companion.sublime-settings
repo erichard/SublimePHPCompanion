@@ -1,7 +1,4 @@
 {
-    // Default pattern
-    "start_dir_pattern": "^.*?((?:[\/\\\\][A-Z][^\/\\\\]*)+)$",
-
     "exclude_dir": [],
 
     // Need the php binary to work
@@ -28,8 +25,5 @@
     // Format of the message when an interface is implemented
     // true: TODO statement
     // false: Exception
-    "use_todo_implement": false,
-
-    "padawan_composer": "composer",
-    "padawan_timeout": 0.5
+    "use_todo_implement": false
 }

@@ -57,3 +57,45 @@ def find_in_global_namespace(symbol):
             matches[phpClass] = phpClass
 
     return matches
+
+def get_active_project_path():
+    window = sublime.active_window()
+    folders = window.folders()
+    if len(folders) == 1:
+        return folders[0]
+    else:
+        active_view = window.active_view()
+        active_file_name = active_view.file_name() if active_view else None
+        if not active_file_name:
+            return folders[0] if len(folders) else os.path.expanduser("~")
+        for folder in folders:
+            if active_file_name.startswith(folder):
+                return folder
+        return os.path.dirname(active_file_name)
+
+def get_composer():
+    composer = get_active_project_path() + '/composer.json'
+    if os.path.isfile(composer):
+        return json.load(open(composer))
+    else:
+        return None
+
+def get_namespace(filename):
+    data = get_composer()
+    for _replace_with, _path in data['autoload']['psr-4'].items():
+        if _path.startswith('./'):
+            _path = _path[2:]     
+
+        if filename.startswith(_path):
+            namespace = filename.replace(_path, _replace_with)
+            namespace = re.sub('/', '\\\\', namespace)
+            return namespace.strip("\\").replace('\\\\', '\\')
+
+    for _replace_with, _path in data['autoload-dev']['psr-4'].items():
+        if _path.startswith('./'):
+            _path = _path[2:]     
+
+        if filename.startswith(_path):
+            namespace = filename.replace(_path, _replace_with)
+            namespace = re.sub('/', '\\\\', namespace)
+            return namespace.strip("\\").replace('\\\\', '\\')

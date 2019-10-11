@@ -1,3 +1,8 @@
+## 2019-10-11
+ - Add support for PSR4 by checking the composer.json
+ - Remove options `start_dir_pattern` and `namespace_prefix`
+ - Removed support for padawan
+
 ## 2018-06-26
  - Message during import_use are now displayed in tooltip instead of status bar
  - New option `namespace_blank_lines` allow to configure the number of newline between `<?php` and the inserted namespace
