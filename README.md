@@ -18,7 +18,7 @@ The package no longer provides keybindings. You will have to install your own sh
 
 ### find_use
 
-Just bring your cursor hover a class name, hit the <kbd>F5</kbd> key (personal shortcut) and that's it.
+Just place your cursor on a class name, hit the <kbd>F5</kbd> key (personal shortcut) and that's it.
 
 It will show you the different namespace that match your class, pick up one and you're done.
 
