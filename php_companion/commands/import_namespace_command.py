@@ -11,7 +11,7 @@ class ImportNamespaceCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         projectPath = get_active_project_path()
         file_name = self.view.file_name().replace(projectPath, '')
-        if file_name.startswith('/'):
+        if file_name.startswith('/') or file_name.startswith('\\'):
             file_name = file_name[1:]
 
         # Abort if the file is not PHP
