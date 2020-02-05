@@ -83,7 +83,7 @@ def get_composer():
 def get_namespace(filename):
     data = get_composer()
     for _replace_with, _path in data['autoload']['psr-4'].items():
-		_path = normalize_to_system_style_path(_path)
+        _path = normalize_to_system_style_path(_path)
         if _path.startswith('./'):
             _path = _path[2:]
 
@@ -93,7 +93,7 @@ def get_namespace(filename):
             return namespace.strip("\\").replace('\\\\', '\\')
 
     for _replace_with, _path in data['autoload-dev']['psr-4'].items():
-		_path = normalize_to_system_style_path(_path)
+        _path = normalize_to_system_style_path(_path)
         if _path.startswith('./'):
             _path = _path[2:]
 
