@@ -2,8 +2,6 @@
 
 This Sublime Text 3 Package provides cool stuff for PHP 5.3+ coding session.
 
-**Note** I am looking for a maintainer for this project because I have switched to vim.
-
 ## Installation
 
 ### Package control
@@ -73,6 +71,12 @@ If you're storing settings in a project file, put them in a phpcompanion node li
         "build"
     ]
 }
+```
+
+**IMPORTANT** : Sublime Text 4 does not index files and folders ignored by .gitignore. Update your sublime settings with :
+
+```
+"index_exclude_gitignore": false
 ```
 
 ### exclude_dir
