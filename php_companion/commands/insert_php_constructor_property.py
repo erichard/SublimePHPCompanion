@@ -92,9 +92,10 @@ class InsertPhpConstructorPropertyCommand(sublime_plugin.TextCommand):
         if is_multiline_constructor:
             arg_pos = last_newline
 
+            # this causes problem if argument has type hinting.
             # append a comma if there are any other arguments
-            if constructor_args.strip() != '':
-                arg_pos += self.view_insert(arg_pos, ",")
+            #if constructor_args.strip() != '':
+            #    arg_pos += self.view_insert(arg_pos, ",")
 
             # insert a newline and indent before inserting the argument
             arg_pos += self.view_insert(arg_pos, "\n\t\t")
@@ -103,11 +104,12 @@ class InsertPhpConstructorPropertyCommand(sublime_plugin.TextCommand):
             # when substitution is done, cursor will be past the point where the
             # closing parenthesis of the constructor currently is
             cursor_start = constructor_end + 1
-
+            
+            # this causes problem if argument has type hinting.
             # prepend a comma if there are any other arguments
-            if constructor_args.strip() != '':
-                text = ", " + text
-                cursor_start += 2
+            #if constructor_args.strip() != '':
+            #    text = ", " + text
+            #    cursor_start += 2
 
         # insert and add selection for the constructor argument name
         self.view_insert(arg_pos, text)
