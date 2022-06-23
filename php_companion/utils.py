@@ -78,7 +78,7 @@ def get_composer():
     if os.path.isfile(composer):
         return json.load(open(composer))
     else:
-        return json.load(open(sublime.packages_path() + '/PHP Companion/composer.json'))
+        return json.loads('{"autoload":{"psr-4":{"":""}}}')
 
 def get_namespace(filename):
     data = get_composer()
